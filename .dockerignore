@@ -1,0 +1,5 @@
+*
+!bin/server.php
+!src
+!src/**
+!autoload.php
