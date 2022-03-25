@@ -1,0 +1,14 @@
+version: "3.6"
+services:
+    markdown-to-html-converter-rest-api:
+        environment:
+            - FLUX_MARKDOWN_TO_HTML_CONVERTER_API_COLOR_TEST_COLOR=#29BACC
+        image: docker-registry.fluxpublisher.ch/flux-markdown-to-html-converter/rest-api:latest
+        ports:
+            - [%host_ip%:]9501:9501
+    other-service:
+        depends_on:
+            - markdown-to-html-converter-rest-api
+        environment:
+            [- FLUX_MARKDOWN_TO_HTML_CONVERTER_REST_API_HOST=markdown-to-html-converter-rest-api]
+            [- FLUX_MARKDOWN_TO_HTML_CONVERTER_REST_API_PORT=9501]

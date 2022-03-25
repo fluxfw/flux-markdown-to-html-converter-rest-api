@@ -1,0 +1,5 @@
+*
+!.gitignore
+!convert.sh
+!convert-multiple.sh
+!docker-compose.yaml
