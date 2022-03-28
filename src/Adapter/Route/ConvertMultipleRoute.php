@@ -2,8 +2,8 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Route;
 
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\JsonBodyDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\TextBodyDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Body\DefaultBodyType;
