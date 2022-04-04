@@ -37,7 +37,7 @@ COPY . /flux-markdown-to-html-converter-rest-api
 FROM $PHP_CLI_IMAGE
 ARG SWOOLE_SOURCE_URL
 
-LABEL org.opencontainers.image.source="https://github.com/flux-eco/flux-markdown-to-html-converter-rest-api"
+LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-markdown-to-html-converter-rest-api"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
 
 RUN apk add --no-cache libstdc++ && \
