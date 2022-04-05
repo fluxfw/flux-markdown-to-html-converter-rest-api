@@ -4,15 +4,15 @@ namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Route;
 
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\DefaultBodyType;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\JsonBodyDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\TextBodyDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Body\DefaultBodyType;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Method\DefaultMethod;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Method\Method;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Libs\FluxRestBaseApi\Status\DefaultStatus;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Method\DefaultMethod;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Method\Method;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Request\RequestDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Response\ResponseDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Route\Route;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Status\DefaultStatus;
 
 class ConvertMultipleRoute implements Route
 {
