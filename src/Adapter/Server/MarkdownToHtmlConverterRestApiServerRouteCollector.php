@@ -5,7 +5,7 @@ namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Server;
 use FluxMarkdownToHtmlConverterRestApi\Adapter\Route\ConvertMultipleRoute;
 use FluxMarkdownToHtmlConverterRestApi\Adapter\Route\ConvertRoute;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Collector\RouteCollector;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
 
 class MarkdownToHtmlConverterRestApiServerRouteCollector implements RouteCollector
 {
