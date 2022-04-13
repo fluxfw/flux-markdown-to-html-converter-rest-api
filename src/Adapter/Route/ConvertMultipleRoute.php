@@ -4,15 +4,15 @@ namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Route;
 
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\DefaultBodyType;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\JsonBodyDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Body\TextBodyDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Method\DefaultMethod;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Method\Method;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Request\RequestDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Response\ResponseDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Route\Route;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Status\DefaultStatus;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\Type\DefaultBodyType;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Method\Method;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Route;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Status\DefaultStatus;
 
 class ConvertMultipleRoute implements Route
 {
@@ -59,10 +59,10 @@ class ConvertMultipleRoute implements Route
     }
 
 
-    public function handle(RequestDto $request) : ?ResponseDto
+    public function handle(ServerRequestDto $request) : ?ServerResponseDto
     {
         if (!($request->getParsedBody() instanceof JsonBodyDto)) {
-            return ResponseDto::new(
+            return ServerResponseDto::new(
                 TextBodyDto::new(
                     "No json body"
                 ),
@@ -70,7 +70,7 @@ class ConvertMultipleRoute implements Route
             );
         }
 
-        return ResponseDto::new(
+        return ServerResponseDto::new(
             JsonBodyDto::new(
                 $this->markdown_to_html_converter_api->convertMultiple(
                     array_map(fn(object $data) : MarkdownDto => MarkdownDto::newFromData(

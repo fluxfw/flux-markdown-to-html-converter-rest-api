@@ -3,14 +3,17 @@
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Server;
 
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\SwooleRestApiServer;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\SwooleRestApiServerConfigDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Api\RestApi;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\SwooleServerConfigDto;
 
 class MarkdownToHtmlConverterRestApiServer
 {
 
     private function __construct(
-        private readonly SwooleRestApiServer $swoole_rest_api_server
+        private readonly RestApi $rest_api,
+        private readonly RouteCollector $route_collector,
+        private readonly SwooleServerConfigDto $swoole_server_config
     ) {
 
     }
@@ -22,19 +25,17 @@ class MarkdownToHtmlConverterRestApiServer
         $markdown_to_html_converter_rest_api_server_config ??= MarkdownToHtmlConverterRestApiServerConfigDto::newFromEnv();
 
         return new static(
-            SwooleRestApiServer::new(
-                MarkdownToHtmlConverterRestApiServerRouteCollector::new(
-                    MarkdownToHtmlConverterApi::new(
-                        $markdown_to_html_converter_rest_api_server_config->markdown_to_html_converter_api_config
-                    )
-                ),
-                null,
-                SwooleRestApiServerConfigDto::new(
-                    $markdown_to_html_converter_rest_api_server_config->https_cert,
-                    $markdown_to_html_converter_rest_api_server_config->https_key,
-                    $markdown_to_html_converter_rest_api_server_config->listen,
-                    $markdown_to_html_converter_rest_api_server_config->port
+            RestApi::new(),
+            MarkdownToHtmlConverterRestApiServerRouteCollector::new(
+                MarkdownToHtmlConverterApi::new(
+                    $markdown_to_html_converter_rest_api_server_config->markdown_to_html_converter_api_config
                 )
+            ),
+            SwooleServerConfigDto::new(
+                $markdown_to_html_converter_rest_api_server_config->https_cert,
+                $markdown_to_html_converter_rest_api_server_config->https_key,
+                $markdown_to_html_converter_rest_api_server_config->listen,
+                $markdown_to_html_converter_rest_api_server_config->port
             )
         );
     }
@@ -42,6 +43,10 @@ class MarkdownToHtmlConverterRestApiServer
 
     public function init() : void
     {
-        $this->swoole_rest_api_server->init();
+        $this->rest_api->initSwooleServer(
+            $this->route_collector,
+            null,
+            $this->swoole_server_config
+        );
     }
 }
