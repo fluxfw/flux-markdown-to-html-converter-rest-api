@@ -8,21 +8,21 @@ FROM $FLUX_NAMESPACE_CHANGER_IMAGE:latest AS flux_autoload_api_build
 ENV FLUX_NAMESPACE_CHANGER_FROM_NAMESPACE FluxAutoloadApi
 ENV FLUX_NAMESPACE_CHANGER_TO_NAMESPACE FluxMarkdownToHtmlConverterRestApi\\Libs\\FluxAutoloadApi
 COPY --from=flux_autoload_api /flux-autoload-api /code
-RUN /flux-namespace-changer/bin/docker-entrypoint.php
+RUN change-namespace
 
 FROM $FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE:latest AS flux_markdown_to_html_converter_api
 FROM $FLUX_NAMESPACE_CHANGER_IMAGE:latest AS flux_markdown_to_html_converter_api_build
 ENV FLUX_NAMESPACE_CHANGER_FROM_NAMESPACE FluxMarkdownToHtmlConverterApi
 ENV FLUX_NAMESPACE_CHANGER_TO_NAMESPACE FluxMarkdownToHtmlConverterRestApi\\Libs\\FluxMarkdownToHtmlConverterApi
 COPY --from=flux_markdown_to_html_converter_api /flux-markdown-to-html-converter-api /code
-RUN /flux-namespace-changer/bin/docker-entrypoint.php
+RUN change-namespace
 
 FROM $FLUX_REST_API_IMAGE:latest AS flux_rest_api
 FROM $FLUX_NAMESPACE_CHANGER_IMAGE:latest AS flux_rest_api_build
 ENV FLUX_NAMESPACE_CHANGER_FROM_NAMESPACE FluxRestApi
 ENV FLUX_NAMESPACE_CHANGER_TO_NAMESPACE FluxMarkdownToHtmlConverterRestApi\\Libs\\FluxRestApi
 COPY --from=flux_rest_api /flux-rest-api /code
-RUN /flux-namespace-changer/bin/docker-entrypoint.php
+RUN change-namespace
 
 FROM alpine:latest AS build
 
