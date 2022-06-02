@@ -3,12 +3,16 @@
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Route;
 
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Html\HtmlDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\Type\DefaultBodyType;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Method\Method;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteContentTypeDocumentationDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
+use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteResponseDocumentationDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Route;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
 use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
@@ -33,17 +37,37 @@ class ConvertMultipleRoute implements Route
     }
 
 
-    public function getDocuRequestBodyTypes() : ?array
+    public function getDocumentation() : ?RouteDocumentationDto
     {
-        return [
-            DefaultBodyType::JSON
-        ];
-    }
-
-
-    public function getDocuRequestQueryParams() : ?array
-    {
-        return null;
+        return RouteDocumentationDto::new(
+            $this->getRoute(),
+            $this->getMethod(),
+            "Multiple convert markdown to html",
+            null,
+            null,
+            null,
+            [
+                RouteContentTypeDocumentationDto::new(
+                    DefaultBodyType::JSON,
+                    MarkdownDto::class . "[]",
+                    "Markdown"
+                )
+            ],
+            [
+                RouteResponseDocumentationDto::new(
+                    DefaultBodyType::JSON,
+                    null,
+                    HtmlDto::class . "[]",
+                    "Html"
+                ),
+                RouteResponseDocumentationDto::new(
+                    DefaultBodyType::TEXT,
+                    DefaultStatus::_400,
+                    null,
+                    "No json body"
+                )
+            ]
+        );
     }
 
 
