@@ -49,7 +49,7 @@ class ConvertMultipleRoute implements Route
             [
                 RouteContentTypeDocumentationDto::new(
                     DefaultBodyType::JSON,
-                    MarkdownDto::class . "[]",
+                    "object<string," . MarkdownDto::class . ">",
                     "Markdown"
                 )
             ],
@@ -57,7 +57,7 @@ class ConvertMultipleRoute implements Route
                 RouteResponseDocumentationDto::new(
                     DefaultBodyType::JSON,
                     null,
-                    HtmlDto::class . "[]",
+                    "object<string," . HtmlDto::class . ">",
                     "Html"
                 ),
                 RouteResponseDocumentationDto::new(
