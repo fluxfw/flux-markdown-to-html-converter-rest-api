@@ -97,9 +97,7 @@ class ConvertMultipleRoute implements Route
         return ServerResponseDto::new(
             JsonBodyDto::new(
                 $this->markdown_to_html_converter_api->convertMultiple(
-                    array_map(fn(object $markdown) : MarkdownDto => MarkdownDto::newFromObject(
-                        $markdown
-                    ), (array) $request->parsed_body->data))
+                    array_map([MarkdownDto::class, "newFromObject"], (array) $request->parsed_body->data))
             )
         );
     }
