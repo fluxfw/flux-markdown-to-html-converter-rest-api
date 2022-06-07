@@ -85,7 +85,7 @@ class ConvertRoute implements Route
 
     public function handle(ServerRequestDto $request) : ?ServerResponseDto
     {
-        if (!($request->getParsedBody() instanceof JsonBodyDto)) {
+        if (!($request->parsed_body instanceof JsonBodyDto)) {
             return ServerResponseDto::new(
                 TextBodyDto::new(
                     "No json body"
@@ -98,7 +98,7 @@ class ConvertRoute implements Route
             JsonBodyDto::new(
                 $this->markdown_to_html_converter_api->convert(
                     MarkdownDto::newFromData(
-                        $request->getParsedBody()->getData()
+                        $request->parsed_body->data
                     )
                 )
             )
