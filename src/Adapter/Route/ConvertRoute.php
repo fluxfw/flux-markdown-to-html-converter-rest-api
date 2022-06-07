@@ -97,7 +97,7 @@ class ConvertRoute implements Route
         return ServerResponseDto::new(
             JsonBodyDto::new(
                 $this->markdown_to_html_converter_api->convert(
-                    MarkdownDto::newFromData(
+                    MarkdownDto::newFromObject(
                         $request->parsed_body->data
                     )
                 )
