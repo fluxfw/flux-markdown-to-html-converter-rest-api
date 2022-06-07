@@ -85,7 +85,7 @@ class ConvertMultipleRoute implements Route
 
     public function handle(ServerRequestDto $request) : ?ServerResponseDto
     {
-        if (!($request->getParsedBody() instanceof JsonBodyDto)) {
+        if (!($request->parsed_body instanceof JsonBodyDto)) {
             return ServerResponseDto::new(
                 TextBodyDto::new(
                     "No json body"
@@ -99,7 +99,7 @@ class ConvertMultipleRoute implements Route
                 $this->markdown_to_html_converter_api->convertMultiple(
                     array_map(fn(object $data) : MarkdownDto => MarkdownDto::newFromData(
                         $data
-                    ), (array) $request->getParsedBody()->getData()))
+                    ), (array) $request->parsed_body->data))
             )
         );
     }
