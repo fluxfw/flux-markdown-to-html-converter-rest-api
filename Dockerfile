@@ -20,10 +20,12 @@ RUN change-namespace /code/flux-rest-api FluxRestApi FluxMarkdownToHtmlConverter
 
 FROM alpine:latest AS build
 
-COPY --from=build_namespaces /code/flux-autoload-api /flux-markdown-to-html-converter-rest-api/libs/flux-autoload-api
-COPY --from=build_namespaces /code/flux-markdown-to-html-converter-api /flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api
-COPY --from=build_namespaces /code/flux-rest-api /flux-markdown-to-html-converter-rest-api/libs/flux-rest-api
-COPY . /flux-markdown-to-html-converter-rest-api
+COPY --from=build_namespaces /code/flux-autoload-api /build/flux-markdown-to-html-converter-rest-api/libs/flux-autoload-api
+COPY --from=build_namespaces /code/flux-markdown-to-html-converter-api /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api
+COPY --from=build_namespaces /code/flux-rest-api /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api
+COPY . /build/flux-markdown-to-html-converter-rest-api
+
+RUN (cd /build && tar -czf flux-markdown-to-html-converter-rest-api.tar.gz flux-markdown-to-html-converter-rest-api)
 
 FROM php:8.1-cli-alpine
 
@@ -44,7 +46,7 @@ EXPOSE 9501
 
 ENTRYPOINT ["/flux-markdown-to-html-converter-rest-api/bin/server.php"]
 
-COPY --from=build /flux-markdown-to-html-converter-rest-api /flux-markdown-to-html-converter-rest-api
+COPY --from=build /build /
 
 ARG COMMIT_SHA
 LABEL org.opencontainers.image.revision="$COMMIT_SHA"
