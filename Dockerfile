@@ -3,9 +3,9 @@ ARG FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE=docker-registry.fluxpublisher.ch/f
 ARG FLUX_NAMESPACE_CHANGER_IMAGE=docker-registry.fluxpublisher.ch/flux-namespace-changer
 ARG FLUX_REST_API_IMAGE=docker-registry.fluxpublisher.ch/flux-rest/api
 
-FROM $FLUX_AUTOLOAD_API_IMAGE:latest AS flux_autoload_api
-FROM $FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE:latest AS flux_markdown_to_html_converter_api
-FROM $FLUX_REST_API_IMAGE:latest AS flux_rest_api
+FROM $FLUX_AUTOLOAD_API_IMAGE:v2022-06-22-1 AS flux_autoload_api
+FROM $FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE:v2022-06-22-1 AS flux_markdown_to_html_converter_api
+FROM $FLUX_REST_API_IMAGE:v2022-06-22-1 AS flux_rest_api
 
 FROM $FLUX_NAMESPACE_CHANGER_IMAGE:latest AS build_namespaces
 
@@ -31,6 +31,7 @@ FROM php:8.1-cli-alpine
 
 LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-markdown-to-html-converter-rest-api"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
+LABEL flux-docker-registry-rest-api-build-path="/flux-markdown-to-html-converter-rest-api.tar.gz"
 
 RUN apk add --no-cache libstdc++ && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS curl-dev openssl-dev && \
