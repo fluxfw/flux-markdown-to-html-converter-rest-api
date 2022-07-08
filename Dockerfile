@@ -1,7 +1,7 @@
-ARG FLUX_AUTOLOAD_API_IMAGE=docker-registry.fluxpublisher.ch/flux-autoload-api
-ARG FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE=docker-registry.fluxpublisher.ch/flux-markdown-to-html-converter-api
+ARG FLUX_AUTOLOAD_API_IMAGE
+ARG FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE
 ARG FLUX_NAMESPACE_CHANGER_IMAGE=docker-registry.fluxpublisher.ch/flux-namespace-changer
-ARG FLUX_REST_API_IMAGE=docker-registry.fluxpublisher.ch/flux-rest-api
+ARG FLUX_REST_API_IMAGE
 
 FROM $FLUX_AUTOLOAD_API_IMAGE:v2022-06-22-1 AS flux_autoload_api
 FROM $FLUX_MARKDOWN_TO_HTML_CONVERTER_API_IMAGE:v2022-07-05-1 AS flux_markdown_to_html_converter_api
