@@ -4,7 +4,7 @@ Markdown To Html Converter Rest Api
 
 ## Environment variables
 
-First look at [flux-markdown-to-html-converter-api](https://github.com/flux-eco/flux-markdown-to-html-converter-api#environment-variables)
+First look at [flux-markdown-to-html-converter-api](https://github.com/fluxfw/flux-markdown-to-html-converter-api#environment-variables)
 
 | Variable | Description | Default value |
 | -------- | ----------- | ------------- |
