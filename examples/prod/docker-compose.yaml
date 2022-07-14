@@ -1,6 +1,6 @@
 services:
     markdown-to-html-converter-rest-api:
-        image: docker-registry.fluxpublisher.ch/flux-markdown-to-html-converter-rest-api:latest
+        image: fluxfw/flux-markdown-to-html-converter-rest-api:latest
         ports:
             - [%host_ip%:]9501:9501
         restart: always
