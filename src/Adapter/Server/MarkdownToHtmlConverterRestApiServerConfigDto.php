@@ -2,7 +2,7 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Server;
 
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApiConfigDto;
+use FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApiConfigDto;
 
 class MarkdownToHtmlConverterRestApiServerConfigDto
 {
