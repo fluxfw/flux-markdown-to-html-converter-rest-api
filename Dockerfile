@@ -1,12 +1,12 @@
 FROM php:8.2-cli-alpine AS build
 
-RUN (mkdir -p /flux-namespace-changer && cd /flux-namespace-changer && wget -O - https://github.com/fluxfw/flux-namespace-changer/releases/download/v2022-07-12-1/flux-namespace-changer-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-autoload-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-autoload-api && wget -O - https://github.com/fluxfw/flux-autoload-api/releases/download/v2022-12-12-1/flux-autoload-api-v2022-12-12-1-build.tar.gz | tar -xz --strip-components=1 && /flux-namespace-changer/bin/change-namespace.php . FluxAutoloadApi FluxMarkdownToHtmlConverterRestApi\\Libs\\FluxAutoloadApi)
+RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/commonmark && cd /build/flux-markdown-to-html-converter-rest-api/libs/commonmark && composer require league/commonmark:2.3.8 --ignore-platform-reqs)
 
-RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api && wget -O - https://github.com/fluxfw/flux-markdown-to-html-converter-api/releases/download/v2022-12-12-1/flux-markdown-to-html-converter-api-v2022-12-12-1-build.tar.gz | tar -xz --strip-components=1 && /flux-namespace-changer/bin/change-namespace.php . FluxMarkdownToHtmlConverterApi FluxMarkdownToHtmlConverterRestApi\\Libs\\FluxMarkdownToHtmlConverterApi)
+RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api && wget -O - https://github.com/fluxfw/flux-markdown-to-html-converter-api/archive/refs/tags/v2023-01-30-1.tar.gz | tar -xz --strip-components=1)
 
-RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api && wget -O - https://github.com/fluxfw/flux-rest-api/releases/download/v2022-12-12-1/flux-rest-api-v2022-12-12-1-build.tar.gz | tar -xz --strip-components=1 && /flux-namespace-changer/bin/change-namespace.php . FluxRestApi FluxMarkdownToHtmlConverterRestApi\\Libs\\FluxRestApi)
+RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api && wget -O - https://github.com/fluxfw/flux-rest-api/archive/refs/tags/v2023-01-30-1.tar.gz | tar -xz --strip-components=1)
 
 COPY . /build/flux-markdown-to-html-converter-rest-api
 

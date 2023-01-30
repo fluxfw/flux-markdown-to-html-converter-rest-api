@@ -2,21 +2,21 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Route;
 
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Html\HtmlDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\JsonBodyDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\TextBodyDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Body\Type\DefaultBodyType;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Method\DefaultMethod;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Method\Method;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteContentTypeDocumentationDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Documentation\RouteResponseDocumentationDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Route;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\ServerRequestDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\ServerResponseDto;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Status\DefaultStatus;
+use FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
+use FluxMarkdownToHtmlConverterApi\Adapter\Html\HtmlDto;
+use FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
+use FluxRestApi\Adapter\Body\JsonBodyDto;
+use FluxRestApi\Adapter\Body\TextBodyDto;
+use FluxRestApi\Adapter\Body\Type\DefaultBodyType;
+use FluxRestApi\Adapter\Method\DefaultMethod;
+use FluxRestApi\Adapter\Method\Method;
+use FluxRestApi\Adapter\Route\Documentation\RouteContentTypeDocumentationDto;
+use FluxRestApi\Adapter\Route\Documentation\RouteDocumentationDto;
+use FluxRestApi\Adapter\Route\Documentation\RouteResponseDocumentationDto;
+use FluxRestApi\Adapter\Route\Route;
+use FluxRestApi\Adapter\Server\ServerRequestDto;
+use FluxRestApi\Adapter\Server\ServerResponseDto;
+use FluxRestApi\Adapter\Status\DefaultStatus;
 
 class ConvertRoute implements Route
 {

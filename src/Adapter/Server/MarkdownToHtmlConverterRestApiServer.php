@@ -2,10 +2,10 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Server;
 
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Api\RestApi;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Route\Collector\RouteCollector;
-use FluxMarkdownToHtmlConverterRestApi\Libs\FluxRestApi\Adapter\Server\SwooleServerConfigDto;
+use FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
+use FluxRestApi\Adapter\Api\RestApi;
+use FluxRestApi\Adapter\Route\Collector\RouteCollector;
+use FluxRestApi\Adapter\Server\SwooleServerConfigDto;
 
 class MarkdownToHtmlConverterRestApiServer
 {
