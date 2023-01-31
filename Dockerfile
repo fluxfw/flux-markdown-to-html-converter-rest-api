@@ -2,13 +2,12 @@ FROM php:8.2-cli-alpine AS build
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/commonmark && cd /build/flux-markdown-to-html-converter-rest-api/libs/commonmark && composer require league/commonmark:2.3.8 --ignore-platform-reqs)
+COPY bin/install-libraries.sh /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-rest-api/bin/install-libraries.sh
+RUN /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-rest-api/bin/install-libraries.sh
 
-RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-api && wget -O - https://github.com/fluxfw/flux-markdown-to-html-converter-api/archive/refs/tags/v2023-01-30-1.tar.gz | tar -xz --strip-components=1)
+RUN ln -s libs/flux-markdown-to-html-converter-rest-api/bin /build/flux-markdown-to-html-converter-rest-api/bin
 
-RUN (mkdir -p /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api && cd /build/flux-markdown-to-html-converter-rest-api/libs/flux-rest-api && wget -O - https://github.com/fluxfw/flux-rest-api/archive/refs/tags/v2023-01-30-1.tar.gz | tar -xz --strip-components=1)
-
-COPY . /build/flux-markdown-to-html-converter-rest-api
+COPY . /build/flux-markdown-to-html-converter-rest-api/libs/flux-markdown-to-html-converter-rest-api
 
 FROM php:8.2-cli-alpine
 
@@ -27,6 +26,3 @@ EXPOSE 9501
 ENTRYPOINT ["/flux-markdown-to-html-converter-rest-api/bin/server.php"]
 
 COPY --from=build /build /
-
-ARG COMMIT_SHA
-LABEL org.opencontainers.image.revision="$COMMIT_SHA"

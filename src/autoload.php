@@ -2,9 +2,11 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi;
 
-require_once __DIR__ . "/../libs/flux-markdown-to-html-converter-api/autoload.php";
-require_once __DIR__ . "/../libs/flux-rest-api/autoload.php";
-require_once __DIR__ . "/../libs/commonmark/vendor/autoload.php";
+require_once __DIR__ . "/../../commonmark/vendor/autoload.php";
+
+require_once __DIR__ . "/../../flux-markdown-to-html-converter-api/autoload.php";
+
+require_once __DIR__ . "/../../flux-rest-api/autoload.php";
 
 spl_autoload_register(function (string $class) : void {
     if (str_starts_with($class, __NAMESPACE__ . "\\")) {
