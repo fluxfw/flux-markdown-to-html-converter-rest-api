@@ -29,7 +29,7 @@ class ColorConfigDto
                 continue;
             }
 
-            $colors[strtolower(substr($key, 42))] = $value;
+            $colors[strtolower(substr($key, 47))] = $value;
         }
 
         return static::new(
