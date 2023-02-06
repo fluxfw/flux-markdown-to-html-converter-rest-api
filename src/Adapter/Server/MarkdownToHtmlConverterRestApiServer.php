@@ -2,7 +2,7 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Server;
 
-use FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
+use FluxMarkdownToHtmlConverterRestApi\Adapter\Api\MarkdownToHtmlConverterRestApi;
 use FluxRestApi\Adapter\Api\RestApi;
 use FluxRestApi\Adapter\Route\Collector\RouteCollector;
 use FluxRestApi\Adapter\Server\SwooleServerConfigDto;
@@ -27,8 +27,8 @@ class MarkdownToHtmlConverterRestApiServer
         return new static(
             RestApi::new(),
             MarkdownToHtmlConverterRestApiServerRouteCollector::new(
-                MarkdownToHtmlConverterApi::new(
-                    $markdown_to_html_converter_rest_api_server_config->markdown_to_html_converter_api_config
+                MarkdownToHtmlConverterRestApi::new(
+                    $markdown_to_html_converter_rest_api_server_config->markdown_to_html_converter_rest_api_config
                 )
             ),
             SwooleServerConfigDto::new(
