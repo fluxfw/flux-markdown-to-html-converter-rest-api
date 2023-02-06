@@ -1,7 +1,7 @@
 services:
     markdown-to-html-converter-rest-api:
         environment:
-            - FLUX_MARKDOWN_TO_HTML_CONVERTER_API_COLOR_TEST_COLOR=#29BACC
+            - FLUX_MARKDOWN_TO_HTML_CONVERTER_REST_API_COLOR_TEST_COLOR=#29BACC
         image: fluxfw/flux-markdown-to-html-converter-rest-api:latest
         ports:
             - [%host_ip%:]9501:9501

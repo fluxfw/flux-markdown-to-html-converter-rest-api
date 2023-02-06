@@ -2,9 +2,9 @@
 
 namespace FluxMarkdownToHtmlConverterRestApi\Adapter\Route;
 
-use FluxMarkdownToHtmlConverterApi\Adapter\Api\MarkdownToHtmlConverterApi;
-use FluxMarkdownToHtmlConverterApi\Adapter\Html\HtmlDto;
-use FluxMarkdownToHtmlConverterApi\Adapter\Markdown\MarkdownDto;
+use FluxMarkdownToHtmlConverterRestApi\Adapter\Api\MarkdownToHtmlConverterRestApi;
+use FluxMarkdownToHtmlConverterRestApi\Adapter\Html\HtmlDto;
+use FluxMarkdownToHtmlConverterRestApi\Adapter\Markdown\MarkdownDto;
 use FluxRestApi\Adapter\Body\JsonBodyDto;
 use FluxRestApi\Adapter\Body\TextBodyDto;
 use FluxRestApi\Adapter\Body\Type\DefaultBodyType;
@@ -22,17 +22,17 @@ class ConvertRoute implements Route
 {
 
     private function __construct(
-        private readonly MarkdownToHtmlConverterApi $markdown_to_html_converter_api
+        private readonly MarkdownToHtmlConverterRestApi $markdown_to_html_converter_rest_api
     ) {
 
     }
 
 
     public static function new(
-        MarkdownToHtmlConverterApi $markdown_to_html_converter_api
+        MarkdownToHtmlConverterRestApi $markdown_to_html_converter_rest_api
     ) : static {
         return new static(
-            $markdown_to_html_converter_api
+            $markdown_to_html_converter_rest_api
         );
     }
 
@@ -96,7 +96,7 @@ class ConvertRoute implements Route
 
         return ServerResponseDto::new(
             JsonBodyDto::new(
-                $this->markdown_to_html_converter_api->convert(
+                $this->markdown_to_html_converter_rest_api->convert(
                     MarkdownDto::newFromObject(
                         $request->parsed_body->data
                     )

@@ -24,6 +24,4 @@ checkAlreadyInstalled
 
 installComposerLibrary commonmark league/commonmark:2.3.8
 
-installLibrary flux-markdown-to-html-converter-api https://github.com/fluxfw/flux-markdown-to-html-converter-api/archive/refs/tags/v2023-01-30-1.tar.gz
-
 installLibrary flux-rest-api https://github.com/fluxfw/flux-rest-api/archive/refs/tags/v2023-01-30-1.tar.gz
