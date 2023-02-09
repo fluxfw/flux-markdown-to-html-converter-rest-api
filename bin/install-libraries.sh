@@ -2,12 +2,13 @@
 
 set -e
 
-root="`dirname "$0"`/.."
+bin="`dirname "$0"`"
+root="$bin/.."
 libs="$root/.."
 
 checkAlreadyInstalled() {
     if [ `ls "$libs" | wc -l` != "1" ]; then
-        echo "Already installed"
+        echo "Already installed" >&2
         exit 1
     fi
 }
@@ -24,4 +25,4 @@ checkAlreadyInstalled
 
 installComposerLibrary commonmark league/commonmark:2.3.8
 
-installLibrary flux-rest-api https://github.com/fluxfw/flux-rest-api/archive/refs/tags/v2023-01-30-1.tar.gz
+installLibrary flux-rest-api https://github.com/fluxfw/flux-rest-api/archive/refs/tags/v2023-02-09-1.tar.gz
